@@ -1,0 +1,46 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div class="listing-detail listing-detail-inactive">
+        <h2 class="listing-detail-title">Listing: {{ listing.title }}</h2>
+
+        <span class="listing-inactive-badge">Listing Closed</span>
+
+        <div class="listing-detail-image">
+            {% if listing.image_url %}
+                <img src="{{ listing.image_url }}" alt="{{ listing.title }}">
+            {% else %}
+                <div class="listing-card-image-fallback">
+                    <span>No image available</span>
+                </div>
+            {% endif %}
+        </div>
+
+        {% if listing.description %}
+            <p class="listing-detail-description">{{ listing.description }}</p>
+        {% endif %}
+
+        <p class="listing-detail-price">${{ listing.current_price }}</p>
+
+        <p class="listing-detail-bid-status">
+            {% if listing.winner %}
+                {% if user == listing.winner %}
+                    You won this auction!
+                {% else %}
+                    Winner is: {{ listing.winner.username }}
+                {% endif %}
+            {% else %}
+                This auction closed with no bids.
+            {% endif %}
+        </p>
+
+        <h4 class="listing-detail-section-title">Details</h4>
+        <ul class="listing-detail-list">
+            <li>Listed by: {{ listing.user.username }}</li>
+            <li>
+                Category:
+                {% if listing.category %}{{ listing.category.name }}{% else %}No Category Listed{% endif %}
+            </li>
+        </ul>
+    </div>
+{% endblock %}
