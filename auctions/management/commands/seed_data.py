@@ -4,7 +4,7 @@ from django.core.management.base import BaseCommand
 
 from auctions.models import Auction_listing, Bid, Category, Comment, User
 
-USERS = ["alice", "bob", "carol", "dave"]
+USERS = ["test", "bob", "carol", "dave"]
 
 CATEGORIES = ["Electronics", "Books", "Home", "Toys", "Fashion"]
 
@@ -34,7 +34,7 @@ class Command(BaseCommand):
                 username=username, defaults={"email": f"{username}@example.com"}
             )
             if created:
-                user.set_password("password123")
+                user.set_password("test")
                 user.save()
             users.append(user)
 
