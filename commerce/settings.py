@@ -32,6 +32,14 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') if os.environ.get
 if not DEBUG:
     ALLOWED_HOSTS.append('.railway.app')
 
+# Railway terminates HTTPS and forwards requests as HTTP, so Django needs to
+# trust the X-Forwarded-Proto header to know the original request was secure.
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_TRUSTED_ORIGINS = [
+    f'https://*{host}' if host.startswith('.') else f'https://{host}'
+    for host in ALLOWED_HOSTS if host
+]
+
 
 # Application definition
 
