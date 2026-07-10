@@ -11,22 +11,22 @@ CATEGORIES = ["Wands & Spellwork", "Potions & Ingredients", "Quidditch Gear", "C
 LISTINGS = [
     ("Elder Wand (slightly used)", "Previous owner deceased. Undefeated in duels, allegedly. "
      "Selling due to moving flats, no longer need to conquer death.", 500, "Wands & Spellwork",
-     "https://images.unsplash.com/photo-1519791883288-dc8bd696e667"),
+     "https://dl.myminifactory.com/object-assets/579f9e40773bc/images/720X720-8549f6435def3389c6b7dd8ac3faac706558f192.jpg"),
     ("Nimbus 2000, one careful owner", "Barely flown, except into a Whomping Willow once. "
      "Comes with minor scratches and a strong desire to seek revenge on said tree.", 120, "Quidditch Gear",
-     "https://images.unsplash.com/photo-1519741497674-611481863552"),
+     "https://external-preview.redd.it/cakeday-post-what-does-reddit-think-of-the-nimbus-2000-i-v0-ewk2xXGsabrgXTXzHdmPdZYGulT7LQ1NDv4UMbavYVU.jpg?width=640&crop=smart&auto=webp&s=f36e019e4e70588d74b1b205463370527ab5e49e"),
     ("Half-used Polyjuice Potion", "Enough for one (1) transformation. Buyer assumes all risk of "
      "becoming someone's least favorite professor. Cat hair not included, allegedly.", 35, "Potions & Ingredients",
-     "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108"),
+     "https://i.redd.it/nduip84b2syb1.jpg"),
     ("Slightly Cursed Locket", "Whispers occasionally. Does not require a Horcrux-removal "
      "specialist, probably. Sold as-is, no refunds, no exceptions, no arguing with it.", 66, "Cursed Objects",
-     "https://images.unsplash.com/photo-1518709268805-4e9042af2176"),
+     "https://noblecollection.co.uk/wp-content/uploads/2025/10/Cursed-Opal-Necklace-Open-Case-990x990.png"),
     ("Baby Norwegian Ridgeback", "Free to a good home outside of Scotland. Hatched accidentally "
      "during a Care of Magical Creatures assignment. Breathes fire when hungry, so often.", 200, "Creatures",
-     "https://images.unsplash.com/photo-1560743641-3914f2c45636"),
+     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaS56MAEGqnfZ1gRI3eUqMaePyoZTxCR8xIFoypTyNmU4V-ux_c3KNAVM&s=10"),
     ("Invisibility Cloak, family heirloom", "Passed down for generations, works perfectly, "
      "still haven't found where I left my other socks though. Genuine, not a knockoff.", 750, "Cursed Objects",
-     "https://images.unsplash.com/photo-1509248961158-e54f6934749c"),
+     "https://m.media-amazon.com/images/I/91hTzpGFfKL._AC_UY1000_.jpg"),
 ]
 
 COMMENTS = [
@@ -59,14 +59,15 @@ class Command(BaseCommand):
             categories[name] = category
 
         for title, description, starting_bid, category_name, image_url in LISTINGS:
-            listing, created = Auction_listing.objects.get_or_create(
+            existing = Auction_listing.objects.filter(title=title).first()
+            listing, created = Auction_listing.objects.update_or_create(
                 title=title,
                 defaults={
                     "description": description,
                     "starting_bid": starting_bid,
                     "category": categories[category_name],
                     "image_url": image_url,
-                    "user": random.choice(users),
+                    "user": existing.user if existing else random.choice(users),
                 },
             )
             if created:
