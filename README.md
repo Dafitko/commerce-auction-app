@@ -31,12 +31,12 @@ python3 manage.py seed
 
 ### Pre-created Test Accounts
 
-To log in, use the **username** (not the email address). All accounts use the same password: `test`
+To log in, use the **username**. All accounts use the same password: `test`
 
-* Username: **harry** (Harry Potter – harry@hogwarts.edu)
-* Username: **ron** (Ron Weasley – ron@hogwarts.edu)
-* Username: **hermione** (Hermione Granger – hermione@hogwarts.edu)
-* Username: **malfoy** (Draco Malfoy – malfoy@hogwarts.edu)
+* Username: **harry**
+* Username: **ron**
+* Username: **hermione**
+* Username: **malfoy**
 
 ## 4. Run the Local Development Server
 
