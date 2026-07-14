@@ -26,17 +26,17 @@ The project includes a custom management command that populates the database wit
 Run the following command:
 
 ```bash
-python3 manage.py seed_data
+python3 manage.py seed
 ```
 
 ### Pre-created Test Accounts
 
-All created accounts use the same password: `test`
+To log in, use the **username** (not the email address). All accounts use the same password: `test`
 
-* **Harry Potter** – harry@hogwarts.edu
-* **Ron Weasley** – ron@hogwarts.edu
-* **Hermione Granger** – hermione@hogwarts.edu
-* **Draco Malfoy** – malfoy@hogwarts.edu
+* Username: **harry** (Harry Potter – harry@hogwarts.edu)
+* Username: **ron** (Ron Weasley – ron@hogwarts.edu)
+* Username: **hermione** (Hermione Granger – hermione@hogwarts.edu)
+* Username: **malfoy** (Draco Malfoy – malfoy@hogwarts.edu)
 
 ## 4. Run the Local Development Server
 
