@@ -35,7 +35,7 @@ LISTINGS = [
 CATEGORY_NAMES = ["Electronics", "Fashion", "Toys", "Home", "Books"]
 
 TEST_USERNAMES = ["test1", "test2", "test3", "test4", "test5"]
-TEST_PASSWORD = "password123"
+TEST_PASSWORD = "test"
 
 
 class Command(BaseCommand):
